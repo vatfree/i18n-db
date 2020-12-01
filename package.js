@@ -2,7 +2,7 @@ Package.describe({
   name: 'vatfree:i18n-db',
   summary: 'Internationalization for Meteor Collections',
   version: '1.0.0',
-  git: 'https://github.com/vatfree/tap-i18n-db'
+  git: 'https://github.com/vatfree/i18n-db'
 });
 
 Package.on_use(function (api) {
@@ -12,8 +12,8 @@ Package.on_use(function (api) {
 
   api.use("autopublish", ['server', 'client'], {weak: true})
 
-  api.use('vatfree:i18n@1.31.0', ['client', 'server']);
-  api.imply('vatfree:i18n', ['client', 'server']);
+  api.use('universe:i18n@1.31.0', ['client', 'server']);
+  api.imply('universe:i18n', ['client', 'server']);
 
   api.use('yogiben:admin@1.1.0', {weak: true});
 
