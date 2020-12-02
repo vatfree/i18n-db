@@ -8,7 +8,7 @@ Package.describe({
 Package.on_use(function (api) {
   api.versionsFrom('1.6');
 
-  api.use(["coffeescript", "underscore", "meteor", "jquery", "reactive-dict"], ['server', 'client']);
+  api.use(["coffeescript@1.0.11", "underscore", "meteor", "jquery", "reactive-dict"], ['server', 'client']);
 
   api.use('vatfree:i18n@1.8.1', ['client', 'server']);
   api.imply('vatfree:i18n', ['client', 'server']);
