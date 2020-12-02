@@ -28,7 +28,7 @@ cd "$DIR/.."
 script_name=$(basename $0)
 test_name=${script_name##unittest-}
 
-default_unified_langs_dir=".meteor/local/tap-i18n"
+default_unified_langs_dir=".meteor/local/vatfree-i18n"
 fallback_lang="en"
 
 # meteor_unittests_start(test_name, description)
@@ -77,16 +77,16 @@ Package.on_test(function (api) {
 
   $test_specific
 
-  api.use('tap-i18n-db', ['client', 'server']);
+  api.use('vatfree-i18n-db', ['client', 'server']);
 
   api.use('coffeescript', ['client', 'server']);
 
-  api.add_files('unittest/tests/helpers.coffee', ['client', 'server']);
-  api.add_files('unittest/tests/common.coffee', ['client', 'server']);
+  api.add_files('unittest/tests/helpers.js', ['client', 'server']);
+  api.add_files('unittest/tests/common.js', ['client', 'server']);
 EOF
 
     for test_name in "$@"; do
-        echo "api.add_files('unittest/tests/$test_name.coffee', ['client', 'server']);" >> package.js
+        echo "api.add_files('unittest/tests/$test_name.js', ['client', 'server']);" >> package.js
     done
 
     echo "});" >> package.js
@@ -94,8 +94,8 @@ EOF
 
 run_meteor_test () {
     local port=$1
-    export TAP_I18N_DIR="$(pwd)/.meteor/local/tap-i18n" 
-    export TAP_I18N_DEBUG="true" 
+    export TAP_I18N_DIR="$(pwd)/.meteor/local/vatfree-i18n"
+    export TAP_I18N_DEBUG="true"
     meteor --port=$1 test-packages ./
 }
 
@@ -104,7 +104,7 @@ run_meteor_test () {
 test_disabled () {
     local test_name="disabled" port=3000
 
-    meteor_unittests_start "$test_name" "test tap-i18n-db in a project where tap-i18n is disabled"
+    meteor_unittests_start "$test_name" "test vatfree-i18n-db in a project where vatfree-i18n is disabled"
 
     add_package_js_test_section "" "$test_name"
 
@@ -116,12 +116,12 @@ test_disabled () {
 test_enabled () {
     local test_name="enabled" port=3000
 
-    meteor_unittests_start "$test_name" "test tap-i18n-db in a project where tap-i18n is enabled"
+    meteor_unittests_start "$test_name" "test vatfree-i18n-db in a project where vatfree-i18n is enabled"
 
     echo '{"supported_languages": ["aa-AA"]}' > project-tap.i18n
 
     package_js_on_test="$(cat <<EOF
-    api.use('tap-i18n', ['client', 'server']);
+    api.use('vatfree-i18n', ['client', 'server']);
     api.add_files('project-tap.i18n', ['client', 'server']);
 EOF
     )"
@@ -136,12 +136,12 @@ EOF
 test_enabled_autopublish () {
     local test_name="enabled_autopublish" port=3000
 
-    meteor_unittests_start "$test_name" "test tap-i18n-db in a project where tap-i18n is enabled and the autopublish package is installed"
+    meteor_unittests_start "$test_name" "test vatfree-i18n-db in a project where vatfree-i18n is enabled and the autopublish package is installed"
 
     echo '{"supported_languages": ["aa-AA"]}' > project-tap.i18n
 
     package_js_on_test="$(cat <<EOF
-    api.use('tap-i18n', ['client', 'server']);
+    api.use('vatfree-i18n', ['client', 'server']);
     api.use('autopublish', ['client', 'server']);
     api.add_files('project-tap.i18n', ['client', 'server']);
 EOF

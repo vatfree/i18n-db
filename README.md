@@ -1,13 +1,13 @@
-# tap-i18n-db
+# vatfree-i18n-db
 
-Extends the tap:i18n package to allow the translation of collections.
+Extends the vatfree:i18n package to allow the translation of collections.
 
 ### Internationalization for Meteor Collections
 
-**tap-i18n-db** is a [Meteor](http://www.meteor.com) package that
-extends [tap-i18n](https://github.com/TAPevents/tap-i18n) to allow the translation of collections.
+**vatfree-i18n-db** is a [Meteor](http://www.meteor.com) package that
+extends [vatfree-i18n](https://github.com/vatfree/i18n) to allow the translation of collections.
 
-[Watch a talk about tap:i18n-db](https://www.youtube.com/watch?v=cu_dsoIc_0E).
+[Watch a talk about vatfree:i18n-db](https://www.youtube.com/watch?v=cu_dsoIc_0E).
 
 Developed by <a href="http://www.meteorspark.com"><img src="http://www.meteorspark.com/logo/logo-github.png" title="MeteorSpark" alt="MeteorSpark"></a> [Professional Meteor Services](http://www.meteorspark.com)<br/> for <a href="http://tapevents.com/"><img src="http://tapevents.com/wp-content/uploads/2015/02/TAPevents_logo_144px.png" title="TAPevents" alt="TAPevents" style='margin-top:10px'>&nbsp; Event Apps Hong Kong</a>.
 
@@ -21,16 +21,16 @@ Developed by <a href="http://www.meteorspark.com"><img src="http://www.meteorspa
 
 **Simple Integration:** It's easy to start translating existing collections; no data structure changes are required.
 
-**Intuitive API:** tap-i18n-db's API is designed to be simple and as close as possible to Meteor's native methods, which developers are already familiar with.
+**Intuitive API:** vatfree-i18n-db's API is designed to be simple and as close as possible to Meteor's native methods, which developers are already familiar with.
 
-**Dialect Fallback:** If a translation is missing, dialects will fallback to their base language (see tap-i18n's [Languages Tags and Translations Prioritization](https://github.com/TAPevents/tap-i18n#languages-tags-and-translations-prioritization)).
+**Dialect Fallback:** If a translation is missing, dialects will fallback to their base language (see vatfree-i18n's [Languages Tags and Translations Prioritization](https://github.com/vatfree/i18n#languages-tags-and-translations-prioritization)).
 
 ## Getting Started
 
-**Step 1:** Install tap-i18n-db:
+**Step 1:** Install vatfree-i18n-db:
 
 ```bash
-$ meteor add tap:i18n-db
+$ meteor add vatfree:i18n-db
 ```
 
 **Step 2:** Initialize the collection you wish to translate with `new TAPi18n.Collection`
@@ -108,7 +108,7 @@ Meteor.startup(function() {
 
 The above template will automatically render correct translations based on the client's selected language.
 
-**Step 6:** If you already use tap-i18n to internationalize your UI, you are done!
+**Step 6:** If you already use vatfree-i18n to internationalize your UI, you are done!
 
 Otherwise, add **project-tap.i18n** file to your project's **root** with the list of
 languages tags you want your project to support.
@@ -120,7 +120,7 @@ languages tags you want your project to support.
 }
 ```
 
-For more details about **project-tap.i18n** please refer to [tap-i18n's README](https://github.com/TAPevents/tap-i18n#configuring-tap-i18n-build-process).
+For more details about **project-tap.i18n** please refer to [vatfree-i18n's README](https://github.com/vatfree/i18n#configuring-i18n-build-process).
 
 
 ## Caveats
@@ -129,14 +129,14 @@ For more details about **project-tap.i18n** please refer to [tap-i18n's README](
 * You must use `i18nFind` for publications. User regular `find` everywhere else.
 * `TAPi18n.publish(null, ...)` is not supported. You must name each publication.
 * We assume that the fields in your document are in English, if it
-isn't the case, use the `base_language` option of the [tap-i18n-db collection constructor](#tap-i18n-db-collections) to set the correct language.
+isn't the case, use the `base_language` option of the [vatfree-i18n-db collection constructor](#vatfree-i18n-db-collections) to set the correct language.
 * If you want to use an *inclusive* `fields` option in a **client-side** query, `i18n` must be part of the fields subset. Otherwise, it won't be reactive, e.g. `Inventors.find({}, {fields: {born: 1, i18n: 1}});`.
 
 ## Data Structure
 
 ### In MongoDB
 
-Each tap-i18n-db collection has a *base language* (English by default). The
+Each vatfree-i18n-db collection has a *base language* (English by default). The
 document's fields are in the *base language* and the translations for these
 fields are kept in a in a subdocument named `i18n`, example:
 
@@ -167,12 +167,12 @@ fields are kept in a in a subdocument named `i18n`, example:
 }
 ```
 
-You can maintain the above structure by yourself or use tap-i18n-db's 
+You can maintain the above structure by yourself or use vatfree-i18n-db's 
 [translations editing methods](#collections---translations-editing).
 
 ### On the Client
 
-On the client, tap-i18n-db documents won't show the i18n subdocument.
+On the client, vatfree-i18n-db documents won't show the i18n subdocument.
 Instead, you'll see the fields overridden by their translation in the current
 client's language.
 
@@ -200,42 +200,42 @@ translations.
 
 ## Package Developers
 
-You can use tap-i18n-db to support the translation of your package's
+You can use vatfree-i18n-db to support the translation of your package's
 collections. Keep in mind that it is the project developer that manage the
 client's language and set the supported languages.
 
 The i18n subdocuments of your collections will be ignored in projects that will
-use your package without installing and configuring tap-i18n.
+use your package without installing and configuring vatfree-i18n.
 
-Please refer to the [Developing Packages section of tap-i18n's
-REAMDE](https://github.com/TAPevents/tap-i18n/#developing-packages) to get more
-background about tap-i18n and package development. You don't need to follow the
-"Setup tap-i18n" steps in your package to use tap-i18n-db.
+Please refer to the [Developing Packages section of vatfree-i18n's
+REAMDE](https://github.com/vatfree/i18n/#developing-packages) to get more
+background about vatfree-i18n and package development. You don't need to follow the
+"Setup vatfree-i18n" steps in your package to use vatfree-i18n-db.
 
 **Notes:**
 
 * All the [translation editing methods](#collections---translations-editing)
-  will fail if tap-i18n is not enabled in the project level. The optional
+  will fail if vatfree-i18n is not enabled in the project level. The optional
   callback argument will be called with an error object as the first argument (a
   log will be sent to the console if there is no callback).
 
 ## API
 
-### Relevant tap-i18n Methods
+### Relevant vatfree-i18n Methods
 
 **TAPi18n.setLanguage(language\_tag)** *Client*
 
-Documentation available on [TAPi18n's README](https://github.com/TAPevents/tap-i18n#tapi18n-api).
+Documentation available on [TAPi18n's README](https://github.com/vatfree/i18n#tapi18n-api).
 
 **Note:** The returned deferred object resolves or fails when the language
 file load succeed or fail. The actual load of the collections translations
 begins upon resolution of the deferred (upon successful language change).
 
-### tap-i18n-db Collections
+### vatfree-i18n-db Collections
 
 **TAPi18n.Collection(name, options)** *Anywhere*
 
-Constructor for tap-i18n-db collections.
+Constructor for vatfree-i18n-db collections.
 
 It extends Meteor.Collection with the TAPi18n.Collection API.
 
@@ -280,7 +280,7 @@ Use just like you use [collection.find()](http://docs.meteor.com/#find).
 
 **TAPi18n.subscribe(name [, arg1, arg2, ... ] [, callbacks])** *Client*
 
-Subscribe to a tap-i18n-db publication.
+Subscribe to a vatfree-i18n-db publication.
 
 Use just like you use [Meteor.subscribe()](http://docs.meteor.com/#meteor_subscribe).
 
@@ -355,7 +355,7 @@ example), if that language is not the collection's base language, all the
 translations to that language will be removed.
 
 We don't allow the complete removal of the base language translations, since
-tap-i18n-db doesn't distinguish between "translated" fields and other fields
+vatfree-i18n-db doesn't distinguish between "translated" fields and other fields
 the document has, so removal of the base language would mean the removal of the
 document. If fields will contain a request to remove the Collection's base
 language we won't remove any field and the optional callback argument will be
@@ -496,27 +496,27 @@ TAPi18n.setLanguage("aa")
 
 ## Unit Testing
 
-We have more than one unittests to test the different ways tap-i18n-db might be used in a
+We have more than one unittests to test the different ways vatfree-i18n-db might be used in a
 certain project, to test all of them run:
 
     $ ./unittest/unittest-all
 
 The unittest will be available on: [http://localhost:3000](http://localhost:3000) .
 
-We call the different ways tap-i18n-db might be used *environments*. Each time
+We call the different ways vatfree-i18n-db might be used *environments*. Each time
 you'll break the run of the above command (by pressing ctrl+c) the test for
 another environment will run, refresh your browser to load the test for the new
 environment.
 
 You can also test a specific environment:
 
-    # tap-i18n is disabled in the project level
+    # vatfree-i18n is disabled in the project level
     $ ./unittest/unittest-disabled 
 
-    # tap-i18n enabled in the project level - default project-tap.i18n
+    # vatfree-i18n enabled in the project level - default project-tap.i18n
     $ ./unittest/unittest-enabled
 
-    # tap-i18n enabled in the project level the autopublish package is installed - default project-tap.i18n
+    # vatfree-i18n enabled in the project level the autopublish package is installed - default project-tap.i18n
     $ ./unittest/unittest-enabled_autopublish
 
 ## Author
@@ -530,7 +530,7 @@ You can also test a specific environment:
 
 ## Credits
 
-* [tap-i18n](https://github.com/TAPevents/tap-i18n)
+* [vatfree-i18n](https://github.com/vatfree/i18n)
 
 Sponsored by [TAPevents](http://tapevents.com)
 

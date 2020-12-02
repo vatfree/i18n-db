@@ -10,15 +10,31 @@ Package.on_use(function (api) {
 
   api.use(["coffeescript", "underscore", "meteor", "jquery", "reactive-dict"], ['server', 'client']);
 
-  api.use("autopublish", ['server', 'client'], {weak: true})
-
-  api.use('universe:i18n@1.31.0', ['client', 'server']);
-  api.imply('universe:i18n', ['client', 'server']);
-
-  api.use('yogiben:admin@1.1.0', {weak: true});
+  api.use('vatfree:i18n@1.8.1', ['client', 'server']);
+  api.imply('vatfree:i18n', ['client', 'server']);
 
   api.add_files('globals.js', ['client', 'server']);
-  api.add_files('tap_i18n_db-common.coffee', ['client', 'server']);
-  api.add_files('tap_i18n_db-server.coffee', 'server');
-  api.add_files('tap_i18n_db-client.coffee', 'client');
+  api.add_files('tap_i18n_db-common.js', ['client', 'server']);
+  api.add_files('tap_i18n_db-server.js', 'server');
+  api.add_files('tap_i18n_db-client.js', 'client');
+});
+
+Package.on_test(function (api) {
+  //
+  // DO NOT ADD THIS Package.on_test TO GIT!!!
+  // DO NOT ADD THIS Package.on_test TO GIT!!!
+  // DO NOT ADD THIS Package.on_test TO GIT!!!
+  //
+  api.use(['tinytest', 'test-helpers', 'templating', 'jquery', "reactive-dict"], ['client', 'server']);
+
+      api.use('vatfree-i18n', ['client', 'server']);
+    api.add_files('project-tap.i18n', ['client', 'server']);
+
+  api.use('vatfree-i18n-db', ['client', 'server']);
+
+  api.use('coffeescript', ['client', 'server']);
+
+  api.add_files('unittest/tests/helpers.js', ['client', 'server']);
+  api.add_files('unittest/tests/common.js', ['client', 'server']);
+  api.add_files('unittest/tests/enabled.js', ['client', 'server']);
 });
